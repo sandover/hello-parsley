@@ -78,6 +78,23 @@
 ;             :num         #"\d+"
 ;             ))
 
+; parser for cave2.txt -- doesn't compile
+; (def parser5
+;   (p/parser {:main :daterecord :space :ws?}
+;             :ws-         #"\s+"
+;             :daterecord  [:date :cave+]   ; only change from parser3 is here
+;             :date        ["date" #"\w{3}-\d{1,2}-\d{4}"]
+;             :cave        ["cave" :name  "{" :assn* :path* "}"]
+;             :assn        [:label "=" :value]
+;             :label       #{"avg_temp" "material" "altitude" "parent"}
+;             :path        ["path" :name "{" :assn* :measurements "}"]
+;             :measurements  ["measurements" "{" :triple+ "}"]
+;             :triple      ["(" :num "," :num "," :num #"\)(\s*,)?"] 
+;             :name        #"[a-zA-Z0-9_-]+"
+;             :value       #"[a-zA-Z0-9\.]+"
+;             :num         #"\d+"
+;             ))
+
 (defn parse-n-print 
   "Applies the provided parser to the file (relative path).
    Usage: (parse-n-print parser3 'cave.txt')"
